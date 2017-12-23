@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>缓冲菜单（中间）</title>
+	<style>
+		#div1{
+			width: 100px;
+			height: 150px;
+			background-color: #f00;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+		}
+	</style>
+	<script>
+		window.onscroll = function(){
+			var oDiv = document.getElementById('div1');
+			var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+			// oDiv.style.top = (document.documentElement.clientHeight - oDiv.offsetHeight)/2+scrollTop+'px';
+			startMove(parseInt((document.documentElement.clientHeight - oDiv.offsetHeight)/2+scrollTop));
+			// 像素取整，防止一直抖动，因为除2，商可能是小数，所以要取整
+		}
+		var timer = null;
+		function startMove(iTarget){
+			var oDiv = document.getElementById('div1');
+			clearInterval(timer);
+			timer = setInterval(function(){
+				var speed = (iTarget-oDiv.offsetTop)/4;
+				
+				speed = speed>0?Math.ceil(speed):Math.floor(speed);
+				if(iTarget == oDiv.offsetTop){
+					clearInterval(timer);
+				}
+				else{
+					var oTxt = document.getElementById('txt');
+					oTxt.value = oDiv.offsetTop;
+					oDiv.style.top = oDiv.offsetTop+speed+'px';
+				}
+			},30)
+		}
+	</script>
+</head>
+<body style="height: 2000px;">
+	<input type="text" id="txt" style="position: fixed;right: 0;top: 0;">
+	<div id="div1"></div>
+</body>
+</html>

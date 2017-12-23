@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>运动基础</title>
+	<style>
+		#div1{
+			width: 150px;
+			height: 150px;
+			background-color: hotpink;
+			position: absolute;
+			top: 100px;
+			left: 0;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var oDiv = document.getElementById('div1');
+			var oBtn =document.getElementById('btn');
+			var timer = null;
+			oBtn.onclick = function startMove(){
+				clearInterval(timer);//防止每点击一下速度就加快一次
+				timer = setInterval(function(){
+					if(oDiv.offsetLeft>=300){
+						clearInterval(timer);//让他停下来
+					}
+					else{//大于300之后就不会再动了
+						oDiv.style.left = oDiv.offsetLeft+2+'px';
+					}
+					
+				},30);
+			}
+			
+
+		}
+	</script>
+</head>
+<body>
+<button id="btn">开始运动</button>
+	<div id="div1"></div>
+</body>
+</html>

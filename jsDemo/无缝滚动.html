@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝滚动</title>
+	<style>
+		*{margin: 0;padding: 0;list-style: none;}
+		#box{
+			width: 800px;
+			height: 112px;
+			margin: 100px auto;
+			position: relative;
+			background-color: hotpink;
+			overflow: hidden;
+		}
+		#box img{width: 200px;}
+		#box ul{position: absolute;left: 0;top: 0;}
+		#box ul li{
+			float: left;
+			width: 200px;
+			height: 112.5px;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+			1.首先设置定时器让ul动起来
+			2.设置两个ul动起来，然后通过改变ul的宽度来让它在一行上滚动
+			3.判断出界，出界之后把它抓回来原来的地方
+			4.鼠标放上停止滚动，给box加一个onmouseover时间来清除定时器，鼠标移开再开启定时器
+			offsetLeft=(offsetParent的padding-left)+(中间元素的offsetWidth)+(当前元素的margin-left)
+			offsetWidth=(border-width)*2+(padding-left)+(width)+(padding-right)
+			 */
+			var oUl = document.getElementById('ul1');
+			var aLi = document.getElementsByTagName('li');
+			var oBox = document.getElementById('box');
+			var timer = null;
+			var speed = -2;
+			oUl.innerHTML = oUl.innerHTML+oUl.innerHTML;
+			oUl.style.width = aLi[0].offsetWidth*aLi.length+'px';
+			function move(){
+				if(-oUl.offsetLeft>oUl.offsetWidth/2){
+					oUl.style.left = '0';
+				}
+				if(oUl.offsetLeft>0){
+					oUl.style.left = -oUl.offsetWidth/2+'px';
+				}
+				oUl.style.left = oUl.offsetLeft  + speed +'px';
+			}
+			timer = setInterval(move,30);
+			document.getElementsByTagName('a')[0].onclick = function(){
+				speed= -2;
+			}
+			document.getElementsByTagName('a')[1].onclick = function(){
+				speed= 2;
+			}
+			oBox.onmouseover = function(){
+				clearInterval(timer);
+			}
+			oBox.onmouseout = function(){
+				timer=setInterval(move,30);
+			}
+		}
+	</script>
+</head>
+<body>
+	<a href="#">向左走</a>
+	<a href="#">向右走</a>
+	<div id="box">
+		<ul id="ul1">
+			<li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/2.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/3.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/4.jpg" alt=""></a></li>
+		</ul>
+	</div>
+</body>
+</html>
