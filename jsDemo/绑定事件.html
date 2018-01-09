@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绑定事件</title>
+	<script>
+	function myAddEvent(obj,ev,fn){
+		if(obj.attachEvent){
+			obj.attachEvent('on'+ev,fn);
+		}
+		else{
+			obj.addEventListener(ev,fn,false);
+		}
+	}
+	window.onload = function(){
+		var oBtn = document.getElementById('btn1');
+		myAddEvent(oBtn,'click',function(){
+			alert('你点我了');
+		})
+		myAddEvent(oBtn,'click',function(){
+			alert('你又点我了');
+		})
+		/*//IE 下绑定事件
+		oBtn.attachEvent('onclick',function(){
+			alert('alert');
+		})
+		oBtn.attachEvent('onclick',function(){
+			alert('alert111111111111111');
+		})
+
+		//chrome，火狐 下绑定事件，事件名没有'on-'
+		oBtn.addEventListener('click',function(){
+			alert('你点我了');
+		})
+		oBtn.addEventListener('click',function(){
+			alert('你又点我了');
+		})*/
+	}
+	</script>
+</head>
+<body>
+	<input id="btn1" type="button" value="点我试试">
+</body>
+</html>

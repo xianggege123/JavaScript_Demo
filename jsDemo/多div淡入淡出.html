@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多div淡入淡出</title>
+	<style>
+		div{
+			width: 200px;
+			height: 200px;
+			background-color: #f00;
+			margin: 10px;
+			filter:alpha(opacity:30);
+			opacity: 0.3;
+			float: left;
+		}
+	</style>
+	<script>
+	window.onload = function(){
+		var aDiv = document.getElementsByTagName('div');
+		for(var i=0;i<aDiv.length;i++){
+			aDiv[i].alpha = 30;
+			aDiv[i].onmouseover = function(){
+				startMove(this,100);
+			}
+			aDiv[i].onmouseout = function(){
+				startMove(this,30);
+			}
+		}
+	}
+	/*注意：多物体运动框架中，所有的东西都不能共用。
+	这里是淡入淡出，alpha是不能共用的，所以每个div都要定义一个这样就不会有毛病了。*/
+	function startMove(obj,iTarget){
+		clearInterval(obj.timer);
+		obj.timer = setInterval(function(){
+			var speed = (iTarget-obj.alpha)/6;
+			speed = speed>0?Math.ceil(speed):Math.floor(speed);
+			if(obj.alpha==iTarget){
+				clearInterval(obj.timer);
+			}
+			else{
+				obj.alpha+=speed;
+				obj.style.filter = 'alpha(opacity:'+obj.alpha+')';
+				obj.style.opacity = obj.alpha/100;
+			}
+		},30)
+	}
+	</script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

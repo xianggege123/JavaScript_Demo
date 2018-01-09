@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则表达式</title>
+	<script>
+	//第一种方式
+	/*var re = new RegExp('b','i');  //i是忽略大小写的作用
+	var str = 'abcdef';
+	alert(str.search(re));*/
+
+	// 第二种方式
+	/*var re = /b/i  //i是忽略大小写的作用
+	var str = 'aBcdef';
+	alert(str.search(re));*/
+
+	// match：把匹配的项目提取出来 
+	var str = 'ad 23 3123f 31 g99 2j';
+	var re = /\d+/g; 
+	alert(str.match(re));   //23,3123,31,99,2
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

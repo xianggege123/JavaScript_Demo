@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>面向对象选项卡</title>
+	<style>
+		*{padding: 0;margin: 0;}
+		input{
+			width: 100px;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			float: left;
+			border: 1px solid #ccc;
+			background-color: #eee;
+		}
+		#div1{margin: 50px auto;width: 402px;}
+		p{clear: both;}
+		.active{
+			background-color: red;
+			color: white;
+			font-weight: bold;
+			border: none;
+		}
+		#div1 div{
+			width: 398px;
+			height: 300px;
+			border: 1px solid #ccc;
+			border-top: none;
+			display: none;
+		}
+	</style>
+	<script>
+	// 面向对象编程里面不能有函数嵌套；
+	window.onload = function(){
+		var aBtn = document.getElementsByTagName('input');
+		var oDiv = document.getElementById('div1');
+		var aDiv = oDiv.getElementsByTagName('div');
+
+		
+		for(var i=0;i<aBtn.length;i++){
+			aBtn[i].index = i;
+			aBtn[i].onclick = function(){
+				for(var i=0;i<aBtn.length;i++){
+					aBtn[i].className='';
+					aDiv[i].style.display = 'none';
+				}
+				
+				this.className = 'active';
+				aDiv[this.index].style.display = 'block';
+				
+			}
+		}
+		
+	}
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<input class="active" type="button" value="选项一">
+		<input type="button" value="选项二">
+		<input type="button" value="选项三">
+		<input type="button" value="选项四">
+		<p class="clear"></p>
+		<div style="display: block;">选项一</div>
+		<div>选项二</div>
+		<div>选项三</div>
+		<div>选项四</div>
+	</div>
+</body>
+</html>

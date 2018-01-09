@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>右键菜单</title>
+	<style>
+		*{padding: 0;margin: 0;list-style: none;}
+		#div1{
+			width: 200px;
+			background-color: hotpink;
+			padding: 10px;
+			position: absolute;
+			display: none;
+		}
+	</style>
+	<script>
+	// 点击右键阻止默认行为然后弹出自定义菜单
+	document.oncontextmenu = function(ev){
+		var oEvent = ev||event;
+		var oDiv = document.getElementById('div1');
+		oDiv.style.display = 'block';
+		oDiv.style.left = oEvent.clientX+'px';
+		oDiv.style.top = oEvent.clientY+'px';
+		return false;
+	}
+	// 点击左键隐藏
+	document.onclick = function(){
+		var oDiv = document.getElementById('div1');
+		oDiv.style.display = 'none';
+	}
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<ul>
+			<li>我是一个超级无敌大帅哥</li>
+			<li>我是一个超级无敌大帅哥</li>
+			<li>我是一个超级无敌大帅哥</li>
+			<li>我是一个超级无敌大帅哥</li>
+		</ul>	
+	</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>记住上次登录的用户名</title>
+</head>
+<script>
+	/*封装一个设置cookies*/
+	function setCookie(name,value,iDay){
+		var oDate = new Date();
+		oDate.setDate(oDate.getDate()+iDay);
+		document.cookie = name+'='+value+';expires='+oDate;
+	}
+	//获取cookies
+	function getCookie(name){
+		var arr = document.cookie.split('; ');
+		for(var i=0;i<arr.length;i++){
+			var arr2=arr[i].split('=');
+			if(arr2[0]==name){
+				return arr2[1]
+			}
+		}
+		return '';
+	}
+	//删除cookies
+	function removeCookie(name){
+		setCookie(name,1,-1);
+	}
+	window.onload = function(){
+		var oForm = document.getElementById('form1');
+		var oUser = document.getElementsByName('user')[0];
+		oForm.onsubmit = function(){
+			setCookie('user',oUser.value,14);//登录之后就把cookie存起来
+		}
+		oUser.value = getCookie('user');
+	}
+	</script>
+<body>
+	<form id="form1" action="http://www.baidu.com/">
+		用户名：<input type="text" name="user">
+		密码：<input type="password" name="pass">
+		<input type="submit" value="登陆">
+	</form>
+</body>
+</html>

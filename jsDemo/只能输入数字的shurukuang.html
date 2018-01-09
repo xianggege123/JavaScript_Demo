@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>只能输入数字的提示框</title>
+	<script>
+	window.onload = function(){
+		var oTxt = document.getElementById('txt1')
+		oTxt.onkeydown = function(ev){
+			var oEvent = ev||event;
+			// alert(oEvent.keyCode);
+			// 0的键码是48，9的键码是57，删除的键码是8，忘记了可以弹出来看看
+			// 这里不包括小键盘
+			if(oEvent.keyCode!=8 && (oEvent.keyCode<48||oEvent.keyCode>57)){
+				return false;
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	只能输入数字喔：<input id="txt1" type="text">
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>练习</title>
+	<style>
+		div{
+			width: 200px;
+			height: 200px;
+			background-color: #f00;
+			border: 1px solid black;
+		}
+	</style>
+	<script>
+	setInterval(function(){
+		var oDiv = document.getElementsByTagName('div')[0];
+		oDiv.style.width = oDiv.offsetWidth-3+'px';
+	},30)
+	</script>
+</head>
+<body>
+<div></div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>scroll</title>
+	<script>
+	document.onclick = function(){
+		//IE、FF
+		// alert(document.documentElement.scrollTop);
+		//chrome浏览器
+		// alert(document.body.scrollTop);
+		
+		//滚动距离：由于有兼容性，所以需要解决
+		 var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+		 alert(scrollTop);
+	}
+	</script>
+</head>
+<body style="height: 2000px;">
+	
+</body>
+</html>

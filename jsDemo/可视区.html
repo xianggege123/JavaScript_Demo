@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>可视区的操作</title>
+	<script>
+	window.onload = function(){
+		var oBtn = document.getElementById('btn1');
+		var oTxt = document.getElementById('txt1');
+		oBtn.onclick = function(){
+			alert('可视宽度：'+document.documentElement.clientWidth+'可视高度：'+document.documentElement.clientHeight);
+		}
+	}
+	</script>
+</head>
+<body>
+	<input type="button" id="btn1" value="获取可视区">
+</body>
+</html>

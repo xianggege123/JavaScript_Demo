@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>幻灯片</title>
+	<style>
+		*{margin: 0;padding: 0;list-style: none;}
+		#box{
+			width: 800px;
+			height: 450px;
+			position: relative;
+			margin: 50px auto;
+			overflow: hidden;
+		}
+		ol{
+			position: absolute;
+			right: 50px;
+			bottom: 10px;
+			z-index: 100;
+		}
+		ol li{
+			float: left;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			margin: 0 5px;
+			color: #333;
+			cursor: pointer;
+			border: 1px solid #ff9900;
+			text-align: center;
+			background:rgba(255,255,255,0.7);
+		}
+		.active{
+			background-color: red;
+			color: white;
+		}
+		img{
+			border: none;
+		}
+		ul{
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+		}
+		ul li{
+			float: left;
+			width: 800px;
+			height: 450px;
+		}
+		ul img{
+			float: left;
+			width: 800px;
+			height: 450px;
+		}
+	</style>
+	<script src="move2.js"></script>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('box');
+	var aBtn=oDiv.getElementsByTagName('ol')[0].getElementsByTagName('li');
+	var oUl=oDiv.getElementsByTagName('ul')[0];
+	var now=0;
+	for(var i=0;i<aBtn.length;i++)
+	{
+		aBtn[i].index=i;
+		aBtn[i].onclick=function ()
+		{
+			now=this.index;
+			
+			tab();
+		};
+	}
+	function tab()
+	{
+		for(var i=0;i<aBtn.length;i++)
+		{
+			aBtn[i].className='';
+		}
+		aBtn[now].className='active';
+		startMove(oUl, {top: -450*now});
+	}
+	function next()
+	{
+		now++;
+		if(now==aBtn.length)
+		{
+			now=0;
+		}
+		tab();
+	}
+	var timer=setInterval(next, 5000);
+	oDiv.onmouseover=function ()
+	{
+		clearInterval(timer);
+	};
+	oDiv.onmouseout=function ()
+	{
+		timer=setInterval(next, 5000);
+	};
+};
+</script>
+</head>
+<body>
+	<div id="box">
+		<ol>
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ol>
+		<ul style="">
+			<li><a href="javascript:;"><img src="img/dingshiqi_1.jpg"></a></li>
+			<li><a href="javascript:;"><img src="img/dingshiqi_2.jpg"></a></li>
+			<li><a href="javascript:;"><img src="img/dingshiqi_3.jpg"></a></li>
+			<li><a href="javascript:;"><img src="img/dingshiqi_4.jpg"></a></li>
+			<li><a href="javascript:;"><img src="img/dingshiqi_5.jpg"></a></li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>完美运动框架</title>
+	<style>
+		#div1{
+			width: 100px;
+			height: 100px;
+			background-color: #f00;
+			filter: alpha(opacity:30);
+			opacity: 0.3;
+		}
+	</style>
+	<script src='move2.js'></script>
+	<script>
+		window.onload = function(){
+			var oBtn = document.getElementById('btn1');
+			var oDiv = document.getElementById('div1');
+			oBtn.onclick = function(){
+				startMove(oDiv,{width:201,height:400,opacity:100},function(){
+					alert('aaaaa');
+				});
+			}
+		}
+
+	</script>
+</head>
+<body>
+<input type="button" value="给爷耍一个" id="btn1">
+	<div id="div1"></div>
+</body>
+</html>

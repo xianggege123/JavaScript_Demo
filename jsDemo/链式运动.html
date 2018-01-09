@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>链式运动</title>
+	<style>
+		body{background-color: #000;}
+		#box{width: 400px;height: 100%;position: fixed;right: 0;bottom: 0;}
+		#left{width: 250px;height: 50px;line-height: 50px;text-align: center;
+			background-color: yellow;position: absolute;right: -190px;bottom: 0;z-index: 100;}
+		#top{width: 300px;height: 350px;background-color: green;
+			position: absolute;right: 0px;bottom: -350px;display: none;}
+		#top a{display: block;position: absolute;right: 5px;top: 5px;width: 20px;
+			height: 20px;background-color: #fff;line-height: 20px;text-align: center;
+			text-decoration: none;color: #333;}
+		#right{width: 50px;height: 50px;line-height: 50px;
+			text-align: center;background-color: hotpink;
+			position:absolute;bottom: 0;right: 0;z-index: 1000;cursor: pointer;
+		}
+	</style>
+	<script src="move.js"></script>
+	<script>
+	window.onload = function(){
+		var oRight = document.getElementById('right');
+		var oLeft = document.getElementById('left');
+		var oTop = document.getElementById('top');
+		var oClose = oTop.getElementsByTagName('a')[0];
+		oRight.onclick = function(){
+			startMove(oLeft,'right',50,function(){
+				oTop.style.display='block';
+				startMove(oTop,'bottom',50);
+			})
+		}
+		oClose.onclick = function(){
+			startMove(oTop,'bottom',-300,function(){
+				oTop.style.display="none";
+				startMove(oLeft,'right',-190);
+			})
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div id="right">点我</div>
+		<div id="left">我先出来</div>
+		<div id="top">
+			<a href="javascript:;">x</a>
+		</div>
+	</div>
+</body>
+</html>

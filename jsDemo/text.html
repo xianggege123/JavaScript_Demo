@@ -3,67 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<style>
-		*{margin: 0;padding: 0;list-style: none;}
-		#div1{margin: 100px auto;background-color: #ccc;width: 800px;height:112.5px;
-			position: relative;
-		 	overflow: hidden;
-		 }
-		 ul{
-		 	position: absolute;
-		 	left: 0;
-		 	top: 0;
-		 }
-		li{float: left;/* width: 200px;height: 112.5px; */}
-		img{width: 200px;}
-	</style>
+	<script>
+	window.onload = function(){
+		var oTxt = document.getElementById('txt1');
+		var oBtn = document.getElementById('btn1');
+		oBtn.onclick = function(){
+			var re = /^\w+@[a-z0-9]+\.[a-z]+$/i;
+			if(re.test(oTxt.value)){
+				alert('这是一个合法的邮箱');
+			}
+			else{
+				alert('你丫写错了');
+			}
+		}
+	}
+	</script>
 </head>
 <body>
-<a href="#">向左滚动</a>
-<a href="#">向右滚动</a>
-	<div id="div1">
-		<ul>
-			<li><a href="#"><img src="img/1.jpg" /></a></li>
-			<li><a href="#"><img src="img/2.jpg" /></a></li>
-			<li><a href="#"><img src="img/3.jpg" /></a></li>
-			<li><a href="#"><img src="img/4.jpg" /></a></li>
-		</ul>
-	</div>
-
+	<input type="text" id="txt1">
+	<input type="button" id="btn1" value="验证">
 </body>
-<script>
-window.onload = function(){
-	var oDiv = document.getElementById('div1');
-	var oUl = document.getElementsByTagName('ul')[0];
-	var aLi = document.getElementsByTagName('li');
-	var timer = null;
-	var speed = 2;//给<a>用来控制方向的
-	oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;//两个Ul拼起来才够滚动
-	oUl.style.width = aLi[0].offsetWidth*aLi.length+'px';//这样子是为了它能够一排显示
-
-	function move(){
-		if(oUl.offsetLeft<-oUl.offsetWidth/2){ //值可能是负的，所以要加上负号
-			oUl.style.left = '0';
-		}
-		if(oUl.offsetLeft>0){
-			oUl.style.left = -oUl.offsetWidth/2+'px';
-		}
-		oUl.style.left = oUl.offsetLeft + speed +'px';
-	}
-
-	timer = setInterval(move,20);
-	oDiv.onmouseover = function(){
-		clearInterval(timer);
-	}
-	oDiv.onmouseout = function(){
-		timer = setInterval(move,20);
-	}
-	document.getElementsByTagName('a')[0].onclick= function(){
-		speed=-2;
-	}
-	document.getElementsByTagName('a')[1].onclick= function(){
-		speed=2;
-	}
-}
-</script>
 </html>
